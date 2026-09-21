@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1_Arrange/Projects/P-NMM-01_development_plan/P-NMM-01_development_plan.md",
+                "file": "5_Flow/Reviews/0_Reviews.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "P-NMM-01_development_plan"
+              "title": "0_Reviews"
             }
           }
         ]
@@ -179,6 +179,8 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "saintflow:SaintFlow: 수집": false,
+      "saintflow:SaintFlow: 패널 열기": false,
       "switcher:빠른 전환기 열기": false,
       "graph:그래프 뷰 열기": false,
       "canvas:새 캔버스 만들기": false,
@@ -190,10 +192,25 @@
   },
   "active": "7c6be3b7955fe2a0",
   "lastOpenFiles": [
+    "5_Flow/Daily/0_Daily.md",
+    "5_Flow/Reviews/0_Reviews.md",
+    "5_Flow/0_Flow.md",
+    "3_Narrate/0_Narrate.md",
+    "4_Transform/0_Transform.md",
+    "1_Arrange/Archive/0_Archive.md",
+    "1_Arrange/Areas/0_Areas.md",
+    "1_Arrange/Archive/Tasks/0_Tasks.md",
+    "1_Arrange/Archive/Resources/0_Resources.md",
+    "1_Arrange/Archive/Projects/0_Projects.md",
+    "1_Arrange/Archive/Knowledge/0_Knowledge.md",
+    "1_Arrange/Projects/0_Projects.md",
+    "1_Arrange/Resources/0_Resources.md",
+    "1_Arrange/0_Arrange.md",
+    "0_Sweep/0_Sweep.md",
+    "Home.md",
     "1_Arrange/Areas/Neumous/Neumous.md",
     "1_Arrange/Areas/Neumous",
     "1_Arrange/Projects/P-NMM-01_development_plan",
-    "Home.md",
     "1_Arrange/Projects/P-NMM-01_development_plan/P-NMM-01_development_plan.md",
     "9_System/SaintFlow 최종 설계안.md"
   ]
