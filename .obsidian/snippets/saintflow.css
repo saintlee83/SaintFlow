@@ -1,0 +1,92 @@
+/* SaintFlow — 흑백 레이아웃
+   설정 → 모양 → CSS 스니펫에서 saintflow를 켭니다.
+   강조는 Home의 단계 머리글자 한 곳에만 둡니다. */
+
+/* 공통: sf- callout은 회색 한 톤, 그림자 없음 */
+.callout[data-callout^="sf-"] {
+  --callout-color: 128, 128, 128;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  mix-blend-mode: normal;
+}
+.callout[data-callout^="sf-"] > .callout-title { color: var(--text-normal); }
+.callout[data-callout^="sf-"] > .callout-title .callout-icon { color: var(--text-muted); }
+
+.callout[data-callout="sf-q"]        { --callout-icon: lucide-help-circle; }
+.callout[data-callout="sf-evidence"] { --callout-icon: lucide-flag; }
+.callout[data-callout="sf-panel"]    { --callout-icon: lucide-layers; }
+.callout[data-callout="sf-note"]     { --callout-icon: lucide-info; }
+.callout[data-callout="sf-card"] > .callout-title .callout-icon { display: none; }
+
+/* 틀 callout: 제목과 배경을 지우고 안쪽 callout을 나란히 놓습니다 */
+.callout[data-callout="sf-cols"],
+.callout[data-callout="sf-cols3"],
+.callout[data-callout="sf-nav"] {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.callout[data-callout="sf-cols"] > .callout-title,
+.callout[data-callout="sf-cols3"] > .callout-title,
+.callout[data-callout="sf-nav"] > .callout-title { display: none; }
+
+.callout[data-callout="sf-cols"] > .callout-content,
+.callout[data-callout="sf-cols3"] > .callout-content {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  align-items: stretch;
+}
+.callout[data-callout="sf-cols"] > .callout-content  { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); }
+.callout[data-callout="sf-cols3"] > .callout-content { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.callout[data-callout="sf-cols"] > .callout-content > .callout,
+.callout[data-callout="sf-cols3"] > .callout-content > .callout { margin: 0; }
+
+/* Home: SAINT 그리드. 이 vault에서 유일한 강조 */
+.callout[data-callout="sf-nav"] > .callout-content { padding: 0; }
+.callout[data-callout="sf-nav"] ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--background-modifier-border);
+  border-left: 1px solid var(--background-modifier-border);
+}
+.callout[data-callout="sf-nav"] li {
+  margin: 0;
+  padding: 18px 20px 16px;
+  border-right: 1px solid var(--background-modifier-border);
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+.callout[data-callout="sf-nav"] li::marker { content: ""; }
+.callout[data-callout="sf-nav"] .list-bullet,
+.callout[data-callout="sf-nav"] .list-collapse-indicator { display: none; }
+.callout[data-callout="sf-nav"] li::first-letter {
+  font-size: 2.4em;
+  font-weight: 700;
+  line-height: 1;
+}
+.callout[data-callout="sf-nav"] a.internal-link {
+  color: var(--text-normal);
+  font-weight: 600;
+  text-decoration: none;
+}
+.callout[data-callout="sf-nav"] .sf-cap { display: block; margin-top: 4px; }
+
+/* 보조 문구 */
+.sf-cap { color: var(--text-muted); font-size: 0.85em; }
+.sf-sub { display: block; color: var(--text-muted); margin: -0.2em 0 1.2em; }
+
+/* 방 노트와 Home: 속성 패널과 인라인 제목을 숨기고 본문 제목만 보입니다 */
+.sf-room .inline-title,
+.sf-home .inline-title,
+.sf-room .metadata-container,
+.sf-home .metadata-container { display: none; }
+
+/* 좁은 화면 */
+.is-mobile .callout[data-callout="sf-cols"] > .callout-content,
+.is-mobile .callout[data-callout="sf-cols3"] > .callout-content { grid-template-columns: minmax(0, 1fr); }
+.is-mobile .callout[data-callout="sf-nav"] ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }

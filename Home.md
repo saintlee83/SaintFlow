@@ -1,30 +1,31 @@
+---
+cssclasses:
+  - sf-home
+---
 # SaintFlow
+<span class="sf-sub">수집한 것을 실행할 일 · 재사용할 지식 · 설명할 수 있는 이해로 바꾸는 흐름</span>
 
-## 수집함
-아직 처리 방향을 정하지 않은 입력이 무엇인가?
+> [!sf-nav]
+> - [[0_Sweep|S · Sweep]] <span class="sf-cap">수집</span>
+> - [[1_Arrange|A · Arrange]] <span class="sf-cap">판단·정리</span>
+> - [[2_Internalize|I · Internalize]] <span class="sf-cap">이해·연결</span>
+> - [[3_Narrate|N · Narrate]] <span class="sf-cap">인출·설명</span>
+> - [[4_Transform|T · Transform]] <span class="sf-cap">실행·표현</span>
+> - [[5_Flow|Flow]] <span class="sf-cap">검토 루프</span>
 
-![[Checks.base#수집함]]
+## Today
 
-## 다음 행동·예정·마감
-지금 할 일과 놓치면 안 되는 약속은 무엇인가?
+> [!sf-panel]+ 실행
+> ![[Tasks.base#다음 행동]]
 
-![[Tasks.base#다음 행동]]
+> [!sf-panel]- 회상
+> ![[Knowledge.base#오늘 회상]]
 
-![[Tasks.base#예정 및 마감]]
+> [!sf-panel]- 수집함
+> ![[Inbox.base#수집함]]
 
-## 진행 프로젝트
-어떤 결과물을 완성하고 있는가?
-
+## Projects
 ![[Projects.base#진행 중]]
 
-## 회상 연습
-오늘 보지 않고 설명해 볼 내용은 무엇인가?
-
-![[Recall.base#오늘 복습]]
-
-## 주간 검토
-멈춘 일, 대기 중인 일, 정리할 일이 있는가?
-
-![[Projects.base#멈춘 프로젝트]]
-
-![[Checks.base#대기 중]]
+---
+[[SaintFlow Manual|Manual]] · 명령은 명령 팔레트(Ctrl/Cmd+P)에서 `SF`로 찾습니다.

@@ -1,76 +1,123 @@
 filters:
   and:
-    - file.inFolder("1_Arrange/Projects")
-    - 'type == "project"'
-
+    - 'file.inFolder("1_Arrange/Projects")'
 formulas:
-  # 검증 필요: 백링크 대상 Task의 status까지 거르는 식
-  next_actions: 'file.backlinks.filter(value.asFile().properties.status == "next").length'
-  stalled: 'if(status == "active" && file.backlinks.filter(value.asFile().properties.status == "next").length == 0, "STALLED", "")'
-
+  rank: 'if(status == "planned", 1, if(status == "active", 2, if(status == "paused", 3, if(status == "someday", 4, if(status == "done", 5, if(status == "dropped", 6, 0))))))'
+  d_day: 'if(due && status != "done" && status != "dropped", date(due).relative(), "")'
+  open_tasks: 'file.backlinks.filter(value.asFile().properties.type == "task" && value.asFile().properties.archived != true && (value.asFile().properties.status == "next" || value.asFile().properties.status == "in progress" || value.asFile().properties.status == "waiting")).length'
+  active_children: 'file.backlinks.filter(value.asFile().properties.type == "project" && value.asFile().properties.status == "active").length'
+  stalled: 'status == "active" && archived != true && formula.open_tasks == 0 && formula.active_children == 0'
+  task_total: 'file.backlinks.filter(value.asFile().properties.type == "task").length'
+  task_closed: 'file.backlinks.filter(value.asFile().properties.type == "task" && (value.asFile().properties.status == "done" || value.asFile().properties.status == "dropped")).length'
+  progress: 'if(formula.task_total == 0, "", "■".repeat((formula.task_closed / formula.task_total * 10).round()) + "□".repeat(10 - (formula.task_closed / formula.task_total * 10).round()) + " " + (formula.task_closed / formula.task_total * 100).round().toString() + "%")'
 properties:
+  file.name:
+    displayName: 이름
   status:
-    displayName: "상태"
+    displayName: 상태
+  done_criteria:
+    displayName: 완료 조건
+  due:
+    displayName: 기한
   area:
-    displayName: "영역"
-  outcome:
-    displayName: "완료 조건"
-  deadline:
-    displayName: "기한"
-  formula.next_actions:
-    displayName: "다음 행동 수"
+    displayName: Area
+  parent:
+    displayName: 상위 프로젝트
+  formula.d_day:
+    displayName: D-day
+  formula.open_tasks:
+    displayName: 열린 Task
   formula.stalled:
-    displayName: "점검"
-
+    displayName: 멈춤
+  formula.progress:
+    displayName: 진행률
 views:
   - type: table
-    name: "진행 중"
+    name: 전체
+    filters:
+      and:
+        - 'archived != true'
+    order:
+      - file.name
+      - status
+      - parent
+      - formula.progress
+      - formula.d_day
+      - formula.open_tasks
+      - done_criteria
+      - area
+    sort:
+      - property: formula.rank
+        direction: ASC
+      - property: due
+        direction: ASC
+  - type: cards
+    name: 진행 중
     filters:
       and:
         - 'status == "active"'
+        - 'archived != true'
     order:
       - file.name
+      - formula.progress
+      - formula.d_day
+      - formula.open_tasks
+      - parent
       - area
-      - outcome
-      - deadline
-      - formula.next_actions
+    sort:
+      - property: due
+        direction: ASC
+  - type: table
+    name: 점검
+    filters:
+      and:
+        - 'archived != true'
+        - or:
+            - 'status == "planned"'
+            - 'status == "active"'
+            - 'status == "paused"'
+    order:
+      - file.name
+      - status
+      - parent
+      - formula.open_tasks
       - formula.stalled
+      - done_criteria
+      - formula.d_day
+    sort:
+      - property: formula.rank
+        direction: ASC
+      - property: formula.open_tasks
+        direction: ASC
   - type: table
-    name: "멈춘 프로젝트"
+    name: 멈춤
     filters:
       and:
-        - 'formula.stalled == "STALLED"'
+        - 'formula.stalled == true'
     order:
       - file.name
+      - done_criteria
       - area
-      - outcome
   - type: table
-    name: "영역별"
+    name: 연결됨
     filters:
       and:
-        - 'status != "done"'
-        - file.hasLink(this.file)
+        - 'file.hasLink(this.file)'
+        - 'archived != true'
     order:
       - file.name
       - status
-      - outcome
-      - deadline
+      - formula.progress
+      - formula.d_day
+    sort:
+      - property: formula.rank
+        direction: ASC
   - type: table
-    name: "보류 및 언젠가"
+    name: 보관
     filters:
-      or:
-        - 'status == "on-hold"'
-        - 'status == "someday"'
+      and:
+        - 'archived == true'
     order:
       - file.name
       - status
       - area
-  - type: table
-    name: "완료"
-    filters:
-      and:
-        - 'status == "done"'
-    order:
-      - file.name
-      - area
-      - file.mtime

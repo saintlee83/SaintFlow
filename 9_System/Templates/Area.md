@@ -2,21 +2,25 @@
 type: area
 status: active
 standard:
-review_cycle:
+review_cycle: 매월
+link:
+archived: false
+created: "{{date:YYYY-MM-DD}}"
 ---
-<!-- status: active | inactive / review_cycle: weekly | monthly | quarterly -->
-## 유지 기준
+> [!sf-evidence] 유지 기준
+> 무엇이 유지되면 괜찮은지 한 문장으로 `standard`에 적고, `review_cycle`을 정합니다.
 
-## 진행 프로젝트
-![[Projects.base#영역별]]
+## 책임 범위
 
-## 연결된 Task
-![[Tasks.base#연결된 Task]]
+## 프로젝트
+![[Projects.base#연결됨]]
 
-## 관련 지식
-![[Knowledge.base#연결된 지식]]
+## Task
+![[Tasks.base#연결됨]]
 
-## 여기서 만들기
-```saintflow-new
-types: task, project, working, zettel, source
-```
+## 자료와 지식
+![[Resources.base#연결됨]]
+![[Knowledge.base#연결됨]]
+
+## 점검 기록
+- YYYY-MM-DD — 상태와 조치

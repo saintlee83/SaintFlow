@@ -1,37 +1,18 @@
 filters:
   and:
-    - file.inFolder("2_Internalize/Zettels")
-    - 'recall == true'
-
-formulas:
-  next_review: 'if(last_reviewed, date(last_reviewed) + duration(if(box == 1, "1d", if(box == 2, "3d", if(box == 3, "7d", if(box == 4, "14d", "30d"))))), today())'
-
+    - 'file.inFolder("3_Narrate")'
+    - 'type == "recall"'
 properties:
-  box:
-    displayName: "Box"
-  last_reviewed:
-    displayName: "최근 복습일"
-  formula.next_review:
-    displayName: "다음 복습일"
-
+  file.name:
+    displayName: 회상 노트
+  date:
+    displayName: 날짜
 views:
   - type: table
-    name: "오늘 복습"
-    filters:
-      and:
-        - 'formula.next_review <= today()'
+    name: 기록
     order:
       - file.name
-      - box
-      - last_reviewed
-      - formula.next_review
-  - type: table
-    name: "전체 회상 대상"
-    groupBy:
-      property: box
-      direction: ASC
-    order:
-      - file.name
-      - box
-      - last_reviewed
-      - formula.next_review
+      - date
+    sort:
+      - property: date
+        direction: DESC

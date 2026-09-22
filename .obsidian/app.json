@@ -2,5 +2,11 @@
   "newFileLocation": "folder",
   "newFileFolderPath": "0_Sweep",
   "attachmentFolderPath": "./_files",
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": false,
+  "readableLineLength": false,
+  "showInlineTitle": true,
+  "propertiesInDocument": "visible",
+  "promptDelete": true
 }

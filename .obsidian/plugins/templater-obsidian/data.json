@@ -1,0 +1,26 @@
+{
+  "data_version": 2,
+  "command_timeout": 5,
+  "templates_folder": "9_System/Commands",
+  "templates_pairs": [],
+  "trigger_on_file_creation_mode": "none",
+  "auto_jump_to_cursor": false,
+  "jump_to_cursor_after_file_name": false,
+  "shell_path": "",
+  "user_scripts_folder": "9_System/Scripts",
+  "folder_templates": [],
+  "file_templates": [],
+  "syntax_highlighting": true,
+  "syntax_highlighting_mobile": false,
+  "enabled_templates_hotkeys": [
+    "9_System/Commands/SF 보내기.md",
+    "9_System/Commands/SF 새 항목.md",
+    "9_System/Commands/SF 회상 시작.md",
+    "9_System/Commands/SF 회상 판정.md",
+    "9_System/Commands/SF Weekly.md",
+    "9_System/Commands/SF 프로젝트 종료.md"
+  ],
+  "startup_templates": [],
+  "intellisense_render": "1",
+  "ignore_folders_on_creation": []
+}

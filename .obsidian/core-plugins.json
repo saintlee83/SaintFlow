@@ -6,8 +6,7 @@
   "backlink": true,
   "canvas": true,
   "outgoing-link": true,
-  "tag-pane": true,
-  "footnotes": false,
+  "tag-pane": false,
   "properties": true,
   "page-preview": true,
   "daily-notes": true,
@@ -27,7 +26,8 @@
   "workspaces": false,
   "file-recovery": true,
   "publish": false,
-  "sync": true,
+  "sync": false,
   "bases": true,
+  "footnotes": false,
   "webviewer": false
 }
